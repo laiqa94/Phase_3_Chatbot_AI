@@ -5,7 +5,12 @@ import { apiFetch } from '@/lib/api';
 import { getCurrentUser } from '@/lib/api';
 
 const ApiTestPage = () => {
-  const [testResult, setTestResult] = useState<any>(null);
+  const [testResult, setTestResult] = useState<{
+    success: boolean;
+    message: string;
+    data?: any;
+    error?: string;
+  } | null>(null);
   const [loading, setLoading] = useState(false);
 
   const testApiConnection = async () => {
@@ -90,9 +95,9 @@ const ApiTestPage = () => {
 
       <div className="mt-8 p-4 bg-gray-100 rounded">
         <h3 className="font-bold mb-2">Debug Information:</h3>
-        <p><strong>Access Token:</strong> {localStorage.getItem('access_token') ? 'Present' : 'Missing'}</p>
-        <p><strong>User ID:</strong> {localStorage.getItem('user_id') || 'Missing'}</p>
-        <p><strong>API Base URL:</strong> {process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL || 'Not set'}</p>
+        <p><strong>Access Token:</strong> {typeof window !== 'undefined' ? (localStorage.getItem('access_token') ? 'Present' : 'Missing') : 'Missing'}</p>
+        <p><strong>User ID:</strong> {typeof window !== 'undefined' ? String(localStorage.getItem('user_id') || 'Missing') : 'Missing'}</p>
+        <p><strong>API Base URL:</strong> {String(process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL || 'Not set')}</p>
       </div>
     </div>
   );
