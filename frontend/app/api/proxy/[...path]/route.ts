@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getSessionServer } from "@/lib/auth";
 
 function isDevelopment() {
-  return process.env.NODE_ENV === 'development' || process.env.NODE_ENV !== 'production';
+  return process.env.NODE_ENV !== 'production';
 }
 
 function baseUrl() {
