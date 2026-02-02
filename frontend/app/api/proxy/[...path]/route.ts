@@ -319,7 +319,6 @@ async function handler(req: Request, ctx: { params: Promise<{ path: string[] }> 
               return NextResponse.json(mockResponseData, { status: 200 });
             }
           }
-        }
 
         // Handle mock data for new_conversation endpoint when not available on backend
         if (transformedPath.includes('/api/v1/new_conversation') || transformedPath.includes('/new_conversation')) {
@@ -371,7 +370,6 @@ async function handler(req: Request, ctx: { params: Promise<{ path: string[] }> 
               }, { status: 200 });
             }
           }
-        }
       }
 
       // Special handling for 401 Unauthorized - this might be due to missing/invalid token in development
